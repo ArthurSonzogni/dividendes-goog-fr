@@ -54,25 +54,19 @@ the site may break the import until the extension is updated.
 3. Open the [Morgan Stanley at Work dashboard](https://atwork.morganstanley.com/solium/servlet/ui/dashboard)
    to import your dividends.
 
-After changing the code, click the reload icon of the extension in
-`chrome://extensions`.
+## Annual return: add, don't replace
 
-## Layout
+**2DC, 2BH and 2CK are totals**: the Alphabet amounts shown by the extension
+must be **added** to what your French banks have already pre-filled.
 
-| Path | Role |
-|---|---|
-| `extension/app.html`, `app.js`, `app.css` | The extension page |
-| `extension/background.js` | Reminders and the weekly check for a new form |
-| `extension/content/morgan-stanley-main.js` | Runs in the Morgan Stanley page: replays the past-events request |
-| `extension/content/morgan-stanley.js` | Saves the dividends found; falls back to reading the dashboard |
-| `extension/lib/tax.js` | Monthly and annual tax computation |
-| `extension/lib/pdf.js` | Fills the official form |
-| `extension/lib/ecb.js` | ECB exchange rates |
-| `extension/lib/reminders.js` | Statuses and reminders |
-| `extension/lib/form-version.js` | Detection of a new form edition |
-| `extension/lib/i18n.js` | French and English texts |
-| `extension/vendor/` | pdf-lib and the official 2778-DIV-SD form |
-| `test/` | Unit tests |
+- **2BH** matters most: if the Alphabet dividends are missing from it, their
+  social contributions, already paid through the 2778-DIV-SD declarations, are
+  charged **a second time**. Online, add a line in 2BH with SIRET
+  `11111111800019` and your name as collector, or fill line 272 of the 2047,
+  but not both.
+- **2CK** only takes the 12,8 % prélèvement (lines IL), not the social
+  contributions.
+- **8PL** is the gross amount, before the US tax (2047 line 208).
 
 ## Development
 
@@ -81,6 +75,9 @@ npm install
 npm test          # Unit tests (Node 22).
 npm run vendor    # Copy pdf-lib into extension/vendor/.
 ```
+
+After changing the code, click the reload icon of the extension in
+`chrome://extensions`.
 
 ## When a new form is published
 

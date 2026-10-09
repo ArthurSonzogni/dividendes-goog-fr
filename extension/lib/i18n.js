@@ -51,6 +51,7 @@ const TEXTS = {
 
     annualTitle: '3. Déclaration annuelle de revenus',
     annualHint: 'Chaque printemps, déclarez les dividendes reçus l’année précédente. Montants en euros : le brut est la somme des bases des déclarations mensuelles, l’impôt américain est converti au taux de chaque paiement. Cases vérifiées sur les formulaires et notices 2026 (revenus 2025).',
+    annualTotals: '<b>Ajoutez, ne remplacez pas.</b> Les cases 2DC, 2BH et 2CK sont des totaux : ajoutez les montants marqués « + » à ceux déjà préremplis par vos banques françaises. Oublier les dividendes Alphabet en 2BH fait payer leurs prélèvements sociaux une seconde fois. En ligne, ajoutez une ligne en 2BH (SIRET 11111111800019, votre nom comme collecteur) ou remplissez la ligne 272 de la 2047, mais pas les deux.',
     box: 'Case',
     income: 'Revenus {year}',
     inProgress: 'en cours',
@@ -133,6 +134,7 @@ const TEXTS = {
 
     annualTitle: '3. Annual income tax return',
     annualHint: 'Each spring, declare the dividends received the previous year. Amounts in euros: the gross is the sum of the bases of the monthly declarations, the US tax is converted at the rate of each payment. Boxes checked against the 2026 forms and notices (income 2025).',
+    annualTotals: '<b>Add, don’t replace.</b> Boxes 2DC, 2BH and 2CK are totals: add the amounts marked “+” to those already pre-filled by your French banks. Forgetting the Alphabet dividends in 2BH makes you pay their social contributions a second time. Online, add a line in 2BH (SIRET 11111111800019, your name as collector) or fill line 272 of the 2047, but not both.',
     box: 'Box',
     income: 'Income {year}',
     inProgress: 'in progress',

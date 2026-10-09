@@ -186,3 +186,9 @@ select.status.paid { background: color-mix(in srgb, var(--series-3) 20%, var(--s
 /* 1042-S check. */
 #annual input.usd { width: 7em; padding: 2px 6px; text-align: right; font-size: 12px; }
 #annual td.ok { color: var(--series-6); font-weight: 600; }
+
+.warning {
+  margin: 0 0 8px; padding: 8px 12px; font-size: 12px;
+  background: color-mix(in srgb, var(--series-4) 16%, var(--surface));
+  border-left: 3px solid var(--series-4); border-radius: var(--radius-sm);
+}

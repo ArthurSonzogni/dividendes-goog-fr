@@ -203,6 +203,8 @@ function renderAnnual() {
   });
   const v = (f) => returns.map((r) => `<td class="num">${r ? f(r) : '…'}</td>`).join('');
   const eur = (key) => v((r) => `${amount(r[key])}`);
+  // To add to the amounts pre-filled by French banks.
+  const plus = (f) => v((r) => `+ ${amount(f(r))}`);
   const group = (title) => `<tr class="group"><th colspan="${years.length + 2}">${title}</th></tr>`;
   const row = (box, label, cells) => `<tr><td class="box">${box}</td><td>${label}</td>${cells}</tr>`;
   const thisYear = today().slice(0, 4);
@@ -245,9 +247,9 @@ function renderAnnual() {
       ${row('', 'Montant total reporté sur la 2042 C → 8VL', v((r) => amount(r.credit + r.exemptCredit)))}
       ${row('', 'Revenus nets ouvrant droit à crédit d’impôt étranger → 8PL', from2025('gross'))}
       ${group(`${f} 2042 · 2. Revenus de capitaux mobiliers`)}
-      ${row('2DC', 'Revenus des actions et parts (revenu brut)', v((r) => amount(r.gross - r.exempt)))}
-      ${row('2BH', 'Revenus déjà soumis aux prélèvements sociaux', eur('gross'))}
-      ${row('2CK', 'Prélèvement forfaitaire non libératoire déjà versé', eur('prelevement'))}
+      ${row('2DC', 'Revenus des actions et parts (revenu brut)', plus((r) => r.gross - r.exempt))}
+      ${row('2BH', 'Revenus déjà soumis aux prélèvements sociaux', plus((r) => r.gross))}
+      ${row('2CK', 'Prélèvement forfaitaire non libératoire déjà versé', plus((r) => r.prelevement))}
       ${group(`${f} 2042 C · 2. / 8. (${t('online2042')})`)}
       ${impatrie ? row('2DM', 'Impatriés : revenus de capitaux mobiliers exonérés (50 %)', eur('exempt')) : ''}
       ${row('8PL', 'Revenus de capitaux mobiliers nets étrangers', from2025('gross'))}
