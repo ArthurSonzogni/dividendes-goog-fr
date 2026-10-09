@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Dividendes GOOG – 2778-DIV-SD</title>
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1><span data-i18n="title"></span> <small>2778-DIV-SD</small></h1>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <p id="form-update" class="banner" hidden></p>
+
+  <section>
+    <h2 data-i18n="profile"></h2>
+    <form id="profile">
+      <label><span data-i18n="lastName"></span> <input name="lastName" required></label>
+      <label><span data-i18n="firstNames"></span> <input name="firstNames" required></label>
+      <label><span data-i18n="address"></span> <input name="address" required></label>
+      <label><span data-i18n="birthDate"></span> <input name="birthDate" type="date" required></label>
+      <label><span data-i18n="birthPlace"></span> <input name="birthPlace" required></label>
+      <label class="check"><input name="impatrie" type="checkbox"> <span data-i18n="impatrie"></span></label>
+      <div class="signature">
+        <label><span data-i18n="signature"></span> <input id="signature-file" type="file" accept="image/*"></label>
+        <img id="signature-preview" hidden>
+        <button id="signature-remove" type="button" data-i18n="remove" hidden></button>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h2 data-i18n="dividendsTitle"></h2>
+    <p class="hint" data-i18n="dividendsHint"></p>
+    <div class="chart">
+      <div id="chart-legend" class="legend"></div>
+      <svg id="chart" role="img"></svg>
+      <div id="chart-tip" class="tip" hidden></div>
+    </div>
+    <div class="table-scroll">
+    <table id="dividends">
+      <thead>
+        <tr>
+          <th></th>
+          <th data-i18n="status"></th>
+          <th class="right" data-i18n="paymentDate"></th>
+          <th class="right" data-i18n="grossUsd"></th>
+          <th class="right" data-i18n="withholdingUsd"></th>
+          <th class="right" data-i18n="usdInEur"></th>
+          <th class="right" data-i18n="grossEur"></th>
+          <th class="right" data-i18n="csgRate"></th>
+          <th class="num" title="Base imposable">IK<small data-i18n="base"></small></th>
+          <th class="num" title="Prélèvement forfaitaire">IL<small>12,8 %</small></th>
+          <th class="num" title="Contribution sociale généralisée">PQ<small>CSG</small></th>
+          <th class="num" title="CRDS">PV<small>CRDS</small></th>
+          <th class="num" title="Prélèvement de solidarité">PG<small>Solidarité</small></th>
+          <th class="num" title="Total des prélèvements sociaux">PT<small data-i18n="social"></small></th>
+          <th class="num" title="Montant à payer (IL + PT)">QR<small data-i18n="toPay"></small></th>
+          <th data-i18n="due"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    </div>
+  </section>
+
+  <div class="columns">
+  <section>
+    <h2 data-i18n="messageTitle"></h2>
+    <p id="message-status" class="hint"></p>
+    <p class="hint" data-i18n="messagePath"></p>
+    <textarea id="message" rows="9" readonly></textarea>
+    <button id="copy-message" type="button" data-i18n="copyMessage"></button>
+    <p class="hint"><span data-i18n="wireRef"></span> <code id="wire-ref"></code></p>
+  </section>
+
+  <section>
+    <h2 data-i18n="annualTitle"></h2>
+    <p class="hint" data-i18n="annualHint"></p>
+    <div class="table-scroll">
+      <table id="annual"></table>
+    </div>
+  </section>
+  </div>
+
+  <section>
+    <h2 data-i18n="aboutTitle"></h2>
+    <ul class="about">
+      <li data-i18n-html="aboutDividends"></li>
+      <li data-i18n-html="aboutWithholding"></li>
+      <li data-i18n-html="aboutRate"></li>
+      <li data-i18n-html="aboutTax"></li>
+      <li data-i18n-html="aboutReminders"></li>
+      <li data-i18n-html="aboutStorage"></li>
+    </ul>
+  </section>
+</main>
+<script src="vendor/pdf-lib.min.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

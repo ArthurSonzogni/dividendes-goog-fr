@@ -1,0 +1,12 @@
+{
+  "name": "dividendes-goog-fr",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "vendor": "cp node_modules/pdf-lib/dist/pdf-lib.min.js extension/vendor/"
+  },
+  "devDependencies": {
+    "pdf-lib": "1.17.1"
+  }
+}
