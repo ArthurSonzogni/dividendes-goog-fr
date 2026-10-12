@@ -41,7 +41,7 @@ const TEXTS = {
     usWithholding: 'Retenue US',
 
     messageTitle: '2. Message pour impots.gouv.fr',
-    messagePath: 'Espace particulier › Messagerie sécurisée › Écrire › J’ai une autre demande. Joignez le PDF.',
+    messagePath: 'Espace particulier › Messagerie sécurisée › Écrire › Je ne trouve pas de sujet correspondant. Joignez le PDF. Cette déclaration relève du SIE (service des impôts des entreprises) : si la réponse parle de la déclaration annuelle, renvoyez-la en demandant sa transmission au SIE.',
     copyMessage: 'Copier le message',
     wireRef: 'Référence du virement :',
     messageStatus: 'Déclaration de {month}, à envoyer avant le {date}.',
@@ -121,7 +121,7 @@ const TEXTS = {
     usWithholding: 'US withholding',
 
     messageTitle: '2. Message for impots.gouv.fr',
-    messagePath: 'Espace particulier › Messagerie sécurisée › Écrire › J’ai une autre demande. Attach the PDF.',
+    messagePath: 'Espace particulier › Messagerie sécurisée › Écrire › Je ne trouve pas de sujet correspondant. Attach the PDF. This declaration is handled by the SIE (business tax office): if the reply talks about the annual return, send it again asking for it to be forwarded to the SIE.',
     copyMessage: 'Copy message',
     wireRef: 'Wire transfer reference:',
     messageStatus: 'Declaration of {month}, due {date}.',

@@ -286,11 +286,13 @@ function renderMessage({ decl, tax, errors }) {
   const due = deadline(decl.month);
   $('#message-status').textContent = t('messageStatus', { month: monthLabel(decl.month), date: frDate(due) });
   const name = `${profile.firstNames} ${profile.lastName.toUpperCase()}`;
-  $('#message').value = `Objet : Déclaration 2778-DIV-SD – revenus de ${monthLabel(decl.month)}
+  $('#message').value = `Objet : Déclaration 2778-DIV-SD – revenus de ${monthLabel(decl.month)} – à transmettre au SIE
 
 Bonjour,
 
 Veuillez trouver ci-joint ma déclaration n° 2778-DIV-SD relative aux dividendes de source étrangère (Alphabet Inc.) encaissés en ${monthLabel(decl.month)}, pour un montant à payer de ${amount(tax.QR)} €.
+
+Il s'agit du prélèvement forfaitaire et des prélèvements sociaux de l'article 117 quater du CGI, à déclarer et payer avant le 15 du mois suivant : merci de transmettre cette déclaration au SIE si nécessaire. Ces revenus seront également reportés sur ma déclaration de revenus annuelle.
 
 Je vous remercie par avance.
 
