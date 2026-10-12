@@ -2,7 +2,7 @@ import { annualReturn, computeTax, deadline, ratesFor } from './lib/tax.js';
 import { ecbRate } from './lib/ecb.js';
 import { amount, buildPdf, frDate, monthLabel } from './lib/pdf.js';
 import { translate } from './lib/i18n.js';
-import { initialStatuses, statusOf } from './lib/reminders.js';
+import { statusOf } from './lib/reminders.js';
 import { BUNDLED_FORM_YEAR } from './lib/form-version.js';
 
 const $ = (sel) => document.querySelector(sel);
@@ -389,9 +389,8 @@ chrome.storage.onChanged.addListener((changes) => {
 
 const saved = await chrome.storage.local.get(['profile', 'dividends', 'statuses', 'form1042', 'lang', 'formCheck']);
 profile = saved.profile ?? {};
-// Rows without a date are blank rows left by older versions.
-dividends = (saved.dividends ?? []).filter((d) => d.date);
-statuses = saved.statuses ?? initialStatuses(dividends, today());
+dividends = saved.dividends ?? [];
+statuses = saved.statuses ?? {};
 form1042 = saved.form1042 ?? {};
 lang = saved.lang ?? 'fr';
 formCheck = saved.formCheck ?? null;

@@ -29,27 +29,8 @@
     return response;
   };
 
-  const MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet',
-    'août', 'septembre', 'octobre', 'novembre', 'décembre'];
-
-  // ISO dates ("2026-09-14", "2026-09-14T00:00:00Z") or "14 septembre 2026".
-  function parseDate(text) {
-    const iso = String(text).match(/^\d{4}-\d{2}-\d{2}/);
-    if (iso) return iso[0];
-    const m = String(text).match(/^(\d{1,2})(?:er)? (\S+) (\d{4})$/);
-    const month = m && MONTHS.indexOf(m[2].toLowerCase()) + 1;
-    return month ? `${m[3]}-${String(month).padStart(2, '0')}-${m[1].padStart(2, '0')}` : null;
-  }
-
-  // "Vous avez reçu un dividende de 524,09$US" (or "1,234.56 USD").
-  function parseUsd(text) {
-    const m = String(text).match(/([\d\s  .,]*\d)\s*(?:\$\s*US|USD|US\$)/);
-    if (!m) return null;
-    let s = m[1].replace(/[\s  ]/g, '');
-    // The last separator followed by exactly 2 digits is the decimal one.
-    s = /[.,]\d{2}$/.test(s) ? s.slice(0, -3).replace(/[.,]/g, '') + '.' + s.slice(-2) : s.replace(/[.,]/g, '');
-    return Number(s);
-  }
+  // Shared with content/morgan-stanley.js, from content/parse.js.
+  const { parseDate, parseUsd } = globalThis.DividendesGoogParse;
 
   const isDividend = (event) => /dividend/i.test(`${event.type} ${event.title}`);
 

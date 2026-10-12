@@ -36,15 +36,13 @@ logged in**, the way the Morgan Stanley at Work page itself does:
   Stanley. The extension observes that request and sends it again with earlier
   dates, to go back through the history, then keeps the dividends (date and
   gross amount in USD).
-- If that fails, it reads the dividends shown in the dashboard's
-  "Évènements passés" panel.
 - It never reads, stores or sends your password, session or token. The
   dividends are stored in `chrome.storage.local` and never leave the browser.
 - The only other network requests are to the European Central Bank (exchange
   rates) and to impots.gouv.fr (to detect a new edition of the form).
 
-It relies on the current Morgan Stanley at Work site, in French; a redesign of
-the site may break the import until the extension is updated.
+It relies on the current Morgan Stanley at Work site, in French or English; a
+redesign of the site may break the import until the extension is updated.
 
 ## Install
 

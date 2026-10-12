@@ -8,14 +8,7 @@ import { translate } from './i18n.js';
 // 'todo' | 'sent' | 'paid', 'todo' by default.
 export const statusOf = (statuses, month) => statuses?.[month] ?? 'todo';
 
-// Statuses for data saved before statuses existed: the declarations whose
-// deadline has passed were filed without the extension.
-export function initialStatuses(dividends, today) {
-  const months = dividends.filter((d) => d.date).map((d) => d.date.slice(0, 7));
-  return Object.fromEntries(months.filter((m) => deadline(m) < today).map((m) => [m, 'paid']));
-}
-
-export const daysBetween = (from, to) => Math.round((Date.parse(to) - Date.parse(from)) / 864e5);
+const daysBetween = (from, to) => Math.round((Date.parse(to) - Date.parse(from)) / 864e5);
 
 // Alphabet pays its dividend mid-March, June, September and December.
 const PAYMENT_MONTHS = ['03', '06', '09', '12'];

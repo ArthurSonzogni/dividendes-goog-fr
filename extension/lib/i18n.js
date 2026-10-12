@@ -65,7 +65,7 @@ const TEXTS = {
     differs: 'écart de {amount} $',
 
     aboutTitle: 'Origine des données',
-    aboutDividends: '<b>Dividendes.</b> Ouvrez le <a href="https://atwork.morganstanley.com/solium/servlet/ui/dashboard" target="_blank">tableau de bord Morgan Stanley at Work</a>, connecté, dans ce profil Chrome. Le tableau de bord demande vos « évènements passés » à Morgan Stanley ; l’extension renvoie la même requête avec des dates plus anciennes, six mois à la fois, jusqu’au dernier dividende déjà connu (ou juin 2024, premier dividende d’Alphabet). Elle garde la date et le montant brut de chaque dividende. En cas d’échec, elle lit les dividendes visibles dans le panneau « Évènements passés ». L’extension ne lit ni ne stocke jamais votre mot de passe ou votre session.',
+    aboutDividends: '<b>Dividendes.</b> Ouvrez le <a href="https://atwork.morganstanley.com/solium/servlet/ui/dashboard" target="_blank">tableau de bord Morgan Stanley at Work</a>, connecté, dans ce profil Chrome. Le tableau de bord demande vos « évènements passés » à Morgan Stanley ; l’extension renvoie la même requête avec des dates plus anciennes, six mois à la fois, jusqu’au dernier dividende déjà connu (ou juin 2024, premier dividende d’Alphabet). Elle garde la date et le montant brut de chaque dividende. L’extension ne lit ni ne stocke jamais votre mot de passe ou votre session.',
     aboutWithholding: '<b>Retenue américaine.</b> Morgan Stanley n’affiche que le brut : la retenue est calculée à 15 % (taux de la convention, formulaire W-8BEN). Comparez-la chaque année au formulaire 1042-S.',
     aboutRate: '<b>Taux de change.</b> Taux de référence de la Banque centrale européenne du jour du paiement, ou du dernier jour ouvré avant, depuis <code>data-api.ecb.europa.eu</code>.',
     aboutTax: '<b>Impôts.</b> Calculés dans l’extension : prélèvement forfaitaire 12,8 %, CSG 9,2 % (10,6 % à partir de 2026), CRDS 0,5 %, prélèvement de solidarité 7,5 %. Chaque ligne est arrondie à l’euro. Échéance : le 15 du mois suivant le paiement.',
@@ -148,7 +148,7 @@ const TEXTS = {
     differs: 'differs by {amount} $',
 
     aboutTitle: 'How the data is retrieved',
-    aboutDividends: '<b>Dividends.</b> Open the <a href="https://atwork.morganstanley.com/solium/servlet/ui/dashboard" target="_blank">Morgan Stanley at Work dashboard</a>, logged in, in this Chrome profile. The dashboard asks Morgan Stanley for your “past events”; the extension sends the same request again with earlier dates, six months at a time, back to the latest dividend already known (or June 2024, Alphabet’s first dividend). It keeps the date and gross amount of each dividend. If that fails, it reads the dividends visible in the “Évènements passés” panel. The extension never reads or stores your password or session.',
+    aboutDividends: '<b>Dividends.</b> Open the <a href="https://atwork.morganstanley.com/solium/servlet/ui/dashboard" target="_blank">Morgan Stanley at Work dashboard</a>, logged in, in this Chrome profile. The dashboard asks Morgan Stanley for your “past events”; the extension sends the same request again with earlier dates, six months at a time, back to the latest dividend already known (or June 2024, Alphabet’s first dividend). It keeps the date and gross amount of each dividend. The extension never reads or stores your password or session.',
     aboutWithholding: '<b>US withholding.</b> Morgan Stanley only shows the gross amount, so the withholding is computed as 15 % (the treaty rate, W-8BEN form). Compare it each year with the 1042-S form.',
     aboutRate: '<b>Exchange rate.</b> The European Central Bank reference rate of the payment date, or of the last business day before it, from <code>data-api.ecb.europa.eu</code>.',
     aboutTax: '<b>Tax.</b> Computed in the extension: prélèvement forfaitaire 12,8 %, CSG 9,2 % (10,6 % from 2026), CRDS 0,5 %, prélèvement de solidarité 7,5 %. Each line is rounded to the nearest euro. Due on the 15th of the month after the payment.',
@@ -169,8 +169,6 @@ const TEXTS = {
     notifyForm: 'The {year} version is available on impots.gouv.fr.',
   },
 };
-
-export const LANGUAGES = Object.keys(TEXTS);
 
 // The text `key` in `lang`, with its {placeholders} replaced by `vars`.
 export function translate(lang, key, vars = {}) {

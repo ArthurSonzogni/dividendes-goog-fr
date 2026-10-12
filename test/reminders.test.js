@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dueReminders, initialStatuses, statusOf } from '../extension/lib/reminders.js';
+import { dueReminders, statusOf } from '../extension/lib/reminders.js';
 import { latestFormYear } from '../extension/lib/form-version.js';
 
 const dividends = [
@@ -9,10 +9,9 @@ const dividends = [
 ];
 const keys = (state, today) => dueReminders(state, today).map((r) => r.key);
 
-test('statuses default to todo, past deadlines of older data to paid', () => {
+test('statuses default to todo', () => {
   assert.equal(statusOf({}, '2026-09'), 'todo');
   assert.equal(statusOf({ '2026-09': 'sent' }, '2026-09'), 'sent');
-  assert.deepEqual(initialStatuses(dividends, '2026-10-09'), { '2026-06': 'paid' });
 });
 
 test('announces a new dividend, then the deadline, then the delay', () => {

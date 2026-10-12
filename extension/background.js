@@ -1,4 +1,4 @@
-import { dueReminders, initialStatuses } from './lib/reminders.js';
+import { dueReminders } from './lib/reminders.js';
 import { BUNDLED_FORM_YEAR, fetchLatestFormYear } from './lib/form-version.js';
 import { translate } from './lib/i18n.js';
 
@@ -20,10 +20,6 @@ chrome.storage.onChanged.addListener((changes) => {
 
 async function check() {
   const state = await chrome.storage.local.get(['dividends', 'statuses', 'lang', 'notified', 'formCheck']);
-  if (!state.statuses) {
-    state.statuses = initialStatuses(state.dividends ?? [], today());
-    await chrome.storage.local.set({ statuses: state.statuses });
-  }
   const notified = new Set(state.notified ?? []);
   const reminders = dueReminders(state, today());
 
