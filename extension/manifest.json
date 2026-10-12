@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Dividendes GOOG – 2778-DIV-SD",
   "version": "0.4.0",
-  "description": "Prepares the French 2778-DIV-SD declaration and annual tax return boxes for Alphabet (GOOG) dividends received through Morgan Stanley at Work.",
+  "description": "French 2778-DIV-SD declaration and tax return boxes for Alphabet (GOOG) dividends from Morgan Stanley at Work.",
   "action": {
     "default_icon": {
       "128": "icon.png"
@@ -18,8 +18,7 @@
     "notifications"
   ],
   "host_permissions": [
-    "https://data-api.ecb.europa.eu/*",
-    "https://www.impots.gouv.fr/*"
+    "https://data-api.ecb.europa.eu/*"
   ],
   "content_scripts": [
     {

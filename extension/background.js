@@ -1,9 +1,6 @@
 import { dueReminders } from './lib/reminders.js';
-import { BUNDLED_FORM_YEAR, fetchLatestFormYear } from './lib/form-version.js';
-import { translate } from './lib/i18n.js';
 
 const today = () => new Date().toISOString().slice(0, 10);
-const WEEK = 7 * 864e5;
 
 chrome.action.onClicked.addListener(() => chrome.tabs.create({ url: 'app.html' }));
 chrome.notifications.onClicked.addListener(() => chrome.tabs.create({ url: 'app.html' }));
@@ -19,24 +16,9 @@ chrome.storage.onChanged.addListener((changes) => {
 });
 
 async function check() {
-  const state = await chrome.storage.local.get(['dividends', 'statuses', 'lang', 'notified', 'formCheck']);
+  const state = await chrome.storage.local.get(['dividends', 'statuses', 'lang', 'notified']);
   const notified = new Set(state.notified ?? []);
   const reminders = dueReminders(state, today());
-
-  // New edition of the 2778-DIV-SD form, checked weekly.
-  let formCheck = state.formCheck;
-  if (!formCheck || Date.now() - formCheck.time > WEEK) {
-    try {
-      formCheck = { time: Date.now(), latestYear: await fetchLatestFormYear() };
-      await chrome.storage.local.set({ formCheck });
-    } catch (e) {
-      console.warn('[dividendes-goog] form check failed:', e);
-    }
-  }
-  if (formCheck?.latestYear > BUNDLED_FORM_YEAR) {
-    const t = (key, vars) => translate(state.lang ?? 'fr', key, vars);
-    reminders.push({ key: `form:${formCheck.latestYear}`, title: t('notifyFormTitle'), message: t('notifyForm', { year: formCheck.latestYear }) });
-  }
 
   const fresh = reminders.filter((r) => !notified.has(r.key));
   for (const r of fresh) {

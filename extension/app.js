@@ -3,7 +3,6 @@ import { ecbRate } from './lib/ecb.js';
 import { amount, buildPdf, frDate, monthLabel } from './lib/pdf.js';
 import { translate } from './lib/i18n.js';
 import { statusOf } from './lib/reminders.js';
-import { BUNDLED_FORM_YEAR } from './lib/form-version.js';
 
 const $ = (sel) => document.querySelector(sel);
 const today = () => new Date().toISOString().slice(0, 10);
@@ -15,7 +14,6 @@ let dividends = []; // [{ date, usd, withheld, usdEur, rateDate, source }]
 let statuses = {}; // { 'YYYY-MM': 'todo' | 'sent' | 'paid' }
 let form1042 = {}; // { 'YYYY': US tax withheld in USD, from the 1042-S form }
 let lang = 'fr';
-let formCheck = null; // { time, latestYear }, from the background worker.
 let month = today().slice(0, 7); // The selected declaration, 'YYYY-MM'.
 
 const t = (key, vars) => translate(lang, key, vars);
@@ -52,9 +50,6 @@ function renderTexts() {
   document.querySelectorAll('[data-lang]').forEach((b) => b.classList.toggle('active', b.dataset.lang === lang));
   $('#signature-preview').alt = t('signatureAlt');
   $('#chart').setAttribute('aria-label', t('chartLabel'));
-  const banner = $('#form-update');
-  banner.hidden = !(formCheck?.latestYear > BUNDLED_FORM_YEAR);
-  if (!banner.hidden) banner.textContent = t('formUpdate', { year: formCheck.latestYear, bundled: BUNDLED_FORM_YEAR });
 }
 
 function renderDividends() {
@@ -378,22 +373,12 @@ async function downloadPdf(m) {
 
 $('#copy-message').addEventListener('click', () => navigator.clipboard.writeText($('#message').value));
 
-// The background worker updates the form check and the content script the
-// dividends while the page is open.
-chrome.storage.onChanged.addListener((changes) => {
-  if (changes.formCheck) {
-    formCheck = changes.formCheck.newValue;
-    renderTexts();
-  }
-});
-
-const saved = await chrome.storage.local.get(['profile', 'dividends', 'statuses', 'form1042', 'lang', 'formCheck']);
+const saved = await chrome.storage.local.get(['profile', 'dividends', 'statuses', 'form1042', 'lang']);
 profile = saved.profile ?? {};
 dividends = saved.dividends ?? [];
 statuses = saved.statuses ?? {};
 form1042 = saved.form1042 ?? {};
 lang = saved.lang ?? 'fr';
-formCheck = saved.formCheck ?? null;
 // Select the latest dividend, and fetch the rates of the dividends imported
 // from Morgan Stanley.
 const dated = [...dividends].sort((a, b) => a.date.localeCompare(b.date));

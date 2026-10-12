@@ -38,8 +38,11 @@ logged in**, the way the Morgan Stanley at Work page itself does:
   gross amount in USD).
 - It never reads, stores or sends your password, session or token. The
   dividends are stored in `chrome.storage.local` and never leave the browser.
-- The only other network requests are to the European Central Bank (exchange
-  rates) and to impots.gouv.fr (to detect a new edition of the form).
+- The only other network requests are to the European Central Bank, for the
+  exchange rates.
+
+See the [privacy policy](docs/privacy.md), and the
+[justification of each permission](docs/chrome-web-store.md).
 
 It relies on the current Morgan Stanley at Work site, in French or English; a
 redesign of the site may break the import until the extension is updated.
@@ -79,15 +82,14 @@ After changing the code, click the reload icon of the extension in
 
 ## When a new form is published
 
-The extension shows a banner when impots.gouv.fr publishes a new edition of
-the 2778-DIV-SD. Then:
+Each January, check the [2778-DIV-SD page](https://www.impots.gouv.fr/formulaire/2778-div-sd/prelevements-forfaitaire-et-prelevements-sociaux-sur-les-revenus-distribues)
+on impots.gouv.fr. If a new edition is published:
 
 1. Download it into `extension/vendor/2778-div-sd.pdf`.
-2. Update `BUNDLED_FORM_YEAR` in `extension/lib/form-version.js`.
-3. Check the box positions at the top of `extension/lib/pdf.js`: render a
+2. Check the box positions at the top of `extension/lib/pdf.js`: render a
    generated PDF (`PDF_OUT=out.pdf npm test`, then `pdftoppm -png out.pdf`)
    and compare.
-4. Check the rates in `extension/lib/tax.js` and the boxes of the annual
+3. Check the rates in `extension/lib/tax.js` and the boxes of the annual
    return in `extension/app.js` against the new notices.
 
 ## Disclaimer

@@ -69,10 +69,9 @@ const TEXTS = {
     aboutWithholding: '<b>Retenue américaine.</b> Morgan Stanley n’affiche que le brut : la retenue est calculée à 15 % (taux de la convention, formulaire W-8BEN). Comparez-la chaque année au formulaire 1042-S.',
     aboutRate: '<b>Taux de change.</b> Taux de référence de la Banque centrale européenne du jour du paiement, ou du dernier jour ouvré avant, depuis <code>data-api.ecb.europa.eu</code>.',
     aboutTax: '<b>Impôts.</b> Calculés dans l’extension : prélèvement forfaitaire 12,8 %, CSG 9,2 % (10,6 % à partir de 2026), CRDS 0,5 %, prélèvement de solidarité 7,5 %. Chaque ligne est arrondie à l’euro. Échéance : le 15 du mois suivant le paiement.',
-    aboutReminders: '<b>Rappels.</b> Notifications à l’import d’un nouveau dividende, 5 jours avant l’échéance d’une déclaration non envoyée, et vers le 20 mars, juin, septembre et décembre si aucun dividende n’a été importé. Le site impots.gouv.fr est vérifié chaque semaine pour détecter une nouvelle version du formulaire 2778-DIV-SD.',
-    aboutStorage: '<b>Stockage.</b> Dividendes, statuts et profil, y compris l’image de signature, restent dans ce navigateur (<code>chrome.storage.local</code>). Rien n’est envoyé ailleurs, hormis les requêtes vers la BCE et impots.gouv.fr.',
+    aboutReminders: '<b>Rappels.</b> Notifications à l’import d’un nouveau dividende, 5 jours avant l’échéance d’une déclaration non envoyée, et vers le 20 mars, juin, septembre et décembre si aucun dividende n’a été importé.',
+    aboutStorage: '<b>Stockage.</b> Dividendes, statuts et profil, y compris l’image de signature, restent dans ce navigateur (<code>chrome.storage.local</code>). Rien n’est envoyé ailleurs, hormis les requêtes de taux de change vers la BCE.',
 
-    formUpdate: 'Une nouvelle version du formulaire 2778-DIV-SD ({year}) est disponible sur impots.gouv.fr. Le PDF utilise encore la version {bundled} : vérifiez les cases avant l’envoi.',
 
     notifyNewTitle: 'Nouveau dividende Alphabet',
     notifyNew: '{amount} $ reçus le {date}. Déclarez-les avant le {deadline}.',
@@ -82,8 +81,6 @@ const TEXTS = {
     notifyLate: 'Les dividendes de {month} devaient être déclarés avant le {deadline}.',
     notifyImportTitle: 'Dividende Alphabet versé ?',
     notifyImport: 'Alphabet a probablement versé son dividende : ouvrez le tableau de bord Morgan Stanley at Work pour l’importer.',
-    notifyFormTitle: 'Nouveau formulaire 2778-DIV-SD',
-    notifyForm: 'La version {year} est disponible sur impots.gouv.fr.',
   },
   en: {
     title: 'Alphabet (GOOG) dividend declaration',
@@ -152,10 +149,9 @@ const TEXTS = {
     aboutWithholding: '<b>US withholding.</b> Morgan Stanley only shows the gross amount, so the withholding is computed as 15 % (the treaty rate, W-8BEN form). Compare it each year with the 1042-S form.',
     aboutRate: '<b>Exchange rate.</b> The European Central Bank reference rate of the payment date, or of the last business day before it, from <code>data-api.ecb.europa.eu</code>.',
     aboutTax: '<b>Tax.</b> Computed in the extension: prélèvement forfaitaire 12,8 %, CSG 9,2 % (10,6 % from 2026), CRDS 0,5 %, prélèvement de solidarité 7,5 %. Each line is rounded to the nearest euro. Due on the 15th of the month after the payment.',
-    aboutReminders: '<b>Reminders.</b> Notifications when a new dividend is imported, 5 days before the deadline of a declaration not yet sent, and around 20 March, June, September and December if no dividend was imported. impots.gouv.fr is checked weekly for a new version of the 2778-DIV-SD form.',
-    aboutStorage: '<b>Storage.</b> Dividends, statuses and profile, including your signature image, stay in this browser (<code>chrome.storage.local</code>). Nothing is sent anywhere except the requests to the ECB and impots.gouv.fr.',
+    aboutReminders: '<b>Reminders.</b> Notifications when a new dividend is imported, 5 days before the deadline of a declaration not yet sent, and around 20 March, June, September and December if no dividend was imported.',
+    aboutStorage: '<b>Storage.</b> Dividends, statuses and profile, including your signature image, stay in this browser (<code>chrome.storage.local</code>). Nothing is sent anywhere except the exchange-rate requests to the ECB.',
 
-    formUpdate: 'A new version of the 2778-DIV-SD form ({year}) is available on impots.gouv.fr. The PDF still uses the {bundled} version: check the boxes before sending.',
 
     notifyNewTitle: 'New Alphabet dividend',
     notifyNew: '{amount} $ received on {date}. Declare it before {deadline}.',
@@ -165,8 +161,6 @@ const TEXTS = {
     notifyLate: 'The dividends of {month} were due before {deadline}.',
     notifyImportTitle: 'Alphabet dividend paid?',
     notifyImport: 'Alphabet has probably paid its dividend: open the Morgan Stanley at Work dashboard to import it.',
-    notifyFormTitle: 'New 2778-DIV-SD form',
-    notifyForm: 'The {year} version is available on impots.gouv.fr.',
   },
 };
 

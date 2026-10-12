@@ -1,7 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { dueReminders, statusOf } from '../extension/lib/reminders.js';
-import { latestFormYear } from '../extension/lib/form-version.js';
 
 const dividends = [
   { date: '2026-06-15', usd: 510.2 },
@@ -34,11 +33,4 @@ test('texts follow the language', () => {
   const [en] = dueReminders({ dividends, statuses, lang: 'en' }, '2026-10-01');
   assert.equal(fr.message, '524,09 $ reçus le 14/09/2026. Déclarez-les avant le 15/10/2026.');
   assert.equal(en.message, '524,09 $ received on 14/09/2026. Declare it before 15/10/2026.');
-});
-
-test('finds the latest edition of the form', () => {
-  const html = `<a href="/sites/default/files/formulaires/2778-div-sd/2021/2778-div-sd_3465.pdf">
-    <a href="/sites/default/files/formulaires/2778-div-sd/2026/2778-div-sd_5389.pdf">`;
-  assert.equal(latestFormYear(html), 2026);
-  assert.equal(latestFormYear('<html></html>'), null);
 });
