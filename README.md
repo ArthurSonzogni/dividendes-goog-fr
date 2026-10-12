@@ -75,6 +75,8 @@ must be **added** to what your French banks have already pre-filled.
 npm install
 npm test          # Unit tests (Node 22).
 npm run vendor    # Copy pdf-lib into extension/vendor/.
+npm run package   # Build dist/dividendes-goog-fr-<version>.zip for the Chrome Web Store.
+npm run images    # Regenerate the screenshots and store images (Chrome, Pillow).
 ```
 
 After changing the code, click the reload icon of the extension in

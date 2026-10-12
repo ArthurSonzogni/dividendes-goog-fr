@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.js",
-    "vendor": "cp node_modules/pdf-lib/dist/pdf-lib.min.js extension/vendor/"
+    "vendor": "cp node_modules/pdf-lib/dist/pdf-lib.min.js extension/vendor/",
+    "package": "sh scripts/package.sh",
+    "images": "python3 scripts/images.py"
   },
   "devDependencies": {
     "pdf-lib": "1.17.1"
