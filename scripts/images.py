@@ -4,7 +4,10 @@
 - docs/screenshot.png: the whole page, for the README;
 - docs/store/<lang>/screenshot-<n>.png: 1280 × 800 screenshots for the Chrome
   Web Store;
-- docs/store/promo-small.png: the 440 × 280 promotional tile.
+- docs/store/promo-small.png and promo-large.png: the 440 × 280 and
+  1400 × 560 promotional images.
+
+Store images are 24-bit PNG without alpha, as the Chrome Web Store requires.
 
 Requires Google Chrome and Pillow. The ECB API must be reachable: the page
 fetches the exchange rates.
@@ -37,6 +40,7 @@ def demo_site(tmp):
         os.symlink(ROOT / 'extension' / name, tmp / name)
     shutil.copy(ROOT / 'scripts' / 'demo-data.js', tmp / 'demo-data.js')
     shutil.copy(ROOT / 'scripts' / 'promo.html', tmp / 'promo.html')
+    shutil.copy(ROOT / 'scripts' / 'promo-large.html', tmp / 'promo-large.html')
     html = (ROOT / 'extension' / 'app.html').read_text()
     html = html.replace('<script src="vendor/pdf-lib.min.js">',
                         '<script src="demo-data.js"></script>\n<script src="vendor/pdf-lib.min.js">')
@@ -85,11 +89,14 @@ def trim_bottom(image):
     return image
 
 
-def save_png(image, path):
-    """PNG with 256 colors: the page has flat colors, and it divides the size by 3."""
+def save_png(image, path, colors=None):
+    """24-bit PNG, or with a palette of `colors` (the page has flat colors:
+    256 divide the size by 3)."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    image.convert('RGB').quantize(colors=256, method=Image.Quantize.MEDIANCUT,
-                                  dither=Image.Dither.NONE).save(path, optimize=True)
+    image = image.convert('RGB')
+    if colors:
+        image = image.quantize(colors=colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
+    image.save(path, optimize=True)
     print(path.relative_to(ROOT), image.size)
 
 
@@ -105,7 +112,7 @@ def main():
         shoot(f'{base}/demo.html?lang=en', raw, 1360, 2800, scale=2)
         image = trim_bottom(Image.open(raw).convert('RGB'))
         save_png(image.resize((image.width // 2, image.height // 2), Image.LANCZOS),
-                 ROOT / 'docs' / 'screenshot.png')
+                 ROOT / 'docs' / 'screenshot.png', colors=256)
 
         # Store: 1280 × 800 regions of the whole page, each from a section's top.
         for lang in ['fr', 'en']:
@@ -119,6 +126,9 @@ def main():
 
         shoot(f'{base}/promo.html', raw, 440, 280)
         save_png(Image.open(raw), ROOT / 'docs' / 'store' / 'promo-small.png')
+        shutil.copy(ROOT / 'docs' / 'store' / 'fr' / 'screenshot-1.png', tmp / 'shot.png')
+        shoot(f'{base}/promo-large.html', raw, 1400, 560)
+        save_png(Image.open(raw), ROOT / 'docs' / 'store' / 'promo-large.png')
         server.shutdown()
 
 

@@ -12,6 +12,7 @@ built by `npm run package`, the images by `npm run images`.
 - **Screenshots:** the four images of `docs/store/fr/` and `docs/store/en/`
   (1280 × 800, up to 5 allowed).
 - **Small promo tile:** `docs/store/promo-small.png` (440 × 280).
+- **Marquee promo tile** (optional): `docs/store/promo-large.png` (1400 × 560).
 
 ### Description (French)
 
